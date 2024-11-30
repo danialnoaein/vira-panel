@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 
 // Next Imports
-import { useParams, useRouter, usePathname } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 
 // MUI Imports
 import IconButton from '@mui/material/IconButton'

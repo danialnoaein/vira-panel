@@ -20,6 +20,7 @@ import MenuItem from '@mui/material/MenuItem'
 
 // Hook Imports
 import { useSettings } from '@core/hooks/useSettings'
+import type { Locale } from '@/configs/i18n'
 
 type LanguageDataType = {
   langCode: Locale

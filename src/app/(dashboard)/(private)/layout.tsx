@@ -22,7 +22,7 @@ import AuthGuard from '@/hocs/AuthGuard'
 // Util Imports
 import { getMode, getSystemMode } from '@core/utils/serverHelpers'
 
-const Layout = async ({ children, params }: ChildrenType & { params: { lang: Locale } }) => {
+const Layout = async ({ children }: ChildrenType) => {
   // Vars
   const direction = 'rtl'
   const mode = getMode()
@@ -30,7 +30,7 @@ const Layout = async ({ children, params }: ChildrenType & { params: { lang: Loc
 
   return (
     <Providers direction={direction}>
-      <AuthGuard locale={params.lang}>
+      <AuthGuard>
         <LayoutWrapper
           systemMode={systemMode}
           verticalLayout={

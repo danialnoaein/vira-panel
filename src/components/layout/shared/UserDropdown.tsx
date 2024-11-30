@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import type { MouseEvent } from 'react'
 
 // Next Imports
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 // MUI Imports
 import { styled } from '@mui/material/styles'
