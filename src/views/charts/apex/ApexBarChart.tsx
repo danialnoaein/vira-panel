@@ -22,15 +22,14 @@ const ApexBarChart = () => {
       parentHeightOffset: 0,
       toolbar: { show: false }
     },
-    colors: ['#00cfe8'],
+    colors: ['#EB3D63'],
     dataLabels: { enabled: false },
     plotOptions: {
       bar: {
         borderRadius: 8,
         borderRadiusApplication: 'end',
         borderRadiusWhenStacked: 'all',
-        barHeight: '30%',
-        horizontal: true
+        barHeight: '30%'
       }
     },
     grid: {
@@ -50,7 +49,20 @@ const ApexBarChart = () => {
     xaxis: {
       axisBorder: { show: false },
       axisTicks: { color: divider },
-      categories: ['MON, 11', 'THU, 14', 'FRI, 15', 'MON, 18', 'WED, 20', 'FRI, 21', 'MON, 23'],
+      categories: [
+        'فروردین',
+        'اردیبهشت',
+        'خرداد',
+        'تیر',
+        'مرداد',
+        'شهریور',
+        'مهر',
+        'آبان',
+        'آذر',
+        'دی',
+        'بهمن',
+        'اسفند'
+      ],
       labels: {
         style: { colors: disabledText, fontSize: '13px' }
       }
@@ -60,8 +72,7 @@ const ApexBarChart = () => {
   return (
     <Card>
       <CardHeader
-        title='Data Science'
-        subheader='$74,382.72'
+        title='درآمد'
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -75,7 +86,7 @@ const ApexBarChart = () => {
           width='100%'
           height={400}
           options={options}
-          series={[{ data: [700, 350, 480, 600, 210, 550, 150] }]}
+          series={[{ data: [700, 350, 480, 600, 210, 550, 150, 50, 800, 450, 100, 100] }]}
         />
       </CardContent>
     </Card>

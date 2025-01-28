@@ -17,102 +17,12 @@ type DefaultSuggestionsType = {
 
 const defaultSuggestions: DefaultSuggestionsType[] = [
   {
-    sectionLabel: 'Popular Searches',
+    sectionLabel: 'گزارش ها',
     items: [
       {
-        label: 'Analytics',
-        href: '/dashboards/analytics',
-        icon: 'tabler-trending-up'
-      },
-      {
-        label: 'CRM',
-        href: '/dashboards/crm',
+        label: 'عملکرد شخص',
+        href: '/reports/four',
         icon: 'tabler-chart-pie-2'
-      },
-      {
-        label: 'eCommerce',
-        href: '/dashboards/ecommerce',
-        icon: 'tabler-shopping-cart'
-      },
-      {
-        label: 'User List',
-        href: '/apps/user/list',
-        icon: 'tabler-file-description'
-      }
-    ]
-  },
-  {
-    sectionLabel: 'Apps',
-    items: [
-      {
-        label: 'Calendar',
-        href: '/apps/calendar',
-        icon: 'tabler-calendar'
-      },
-      {
-        label: 'Invoice List',
-        href: '/apps/invoice/list',
-        icon: 'tabler-file-info'
-      },
-      {
-        label: 'User List',
-        href: '/apps/user/list',
-        icon: 'tabler-file-invoice'
-      },
-      {
-        label: 'Roles & Permissions',
-        href: '/apps/roles',
-        icon: 'tabler-lock'
-      }
-    ]
-  },
-  {
-    sectionLabel: 'Pages',
-    items: [
-      {
-        label: 'User Profile',
-        href: '/pages/user-profile',
-        icon: 'tabler-user'
-      },
-      {
-        label: 'Account Settings',
-        href: '/pages/account-settings',
-        icon: 'tabler-settings'
-      },
-      {
-        label: 'Pricing',
-        href: '/pages/pricing',
-        icon: 'tabler-currency-dollar'
-      },
-      {
-        label: 'FAQ',
-        href: '/pages/faq',
-        icon: 'tabler-help-circle'
-      }
-    ]
-  },
-  {
-    sectionLabel: 'Forms & Charts',
-    items: [
-      {
-        label: 'Form Layouts',
-        href: '/forms/form-layouts',
-        icon: 'tabler-layout'
-      },
-      {
-        label: 'Form Validation',
-        href: '/forms/form-validation',
-        icon: 'tabler-checkup-list'
-      },
-      {
-        label: 'Form Wizard',
-        href: '/forms/form-wizard',
-        icon: 'tabler-git-merge'
-      },
-      {
-        label: 'Apex Charts',
-        href: '/charts/apex-charts',
-        icon: 'tabler-chart-ppf'
       }
     ]
   }

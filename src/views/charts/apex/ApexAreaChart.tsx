@@ -17,19 +17,14 @@ const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexChart
 
 // Vars
 const areaColors = {
-  series1: '#ab7efd',
-  series2: '#b992fe',
-  series3: '#e0cffe'
+  series1: '#ff0000',
+  series2: '#00ff00'
 }
 
 const series = [
   {
     name: 'Visits',
     data: [100, 120, 90, 170, 130, 160, 140, 240, 220, 180, 270, 280, 375]
-  },
-  {
-    name: 'Clicks',
-    data: [60, 80, 70, 110, 80, 100, 90, 180, 160, 140, 200, 220, 275]
   },
   {
     name: 'Sales',
@@ -54,7 +49,7 @@ const ApexAreaChart = () => {
     dataLabels: { enabled: false },
     stroke: {
       show: false,
-      curve: 'straight'
+      curve: 'smooth'
     },
     legend: {
       position: 'top',
@@ -67,7 +62,7 @@ const ApexAreaChart = () => {
       },
       itemMargin: { horizontal: 9 }
     },
-    colors: [areaColors.series3, areaColors.series2, areaColors.series1],
+    colors: [areaColors.series2, areaColors.series1],
     fill: {
       opacity: 1,
       type: 'solid'
