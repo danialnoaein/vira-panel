@@ -1,10 +1,7 @@
 'use client'
 
 // React Imports
-import { useEffect, useState, useMemo } from 'react'
-
-// Next Imports
-import Link from 'next/link'
+import { useState, useMemo } from 'react'
 
 // MUI Imports
 import Card from '@mui/material/Card'
@@ -16,8 +13,6 @@ import Checkbox from '@mui/material/Checkbox'
 import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
 import TablePagination from '@mui/material/TablePagination'
-import type { TextFieldProps } from '@mui/material/TextField'
-import MenuItem from '@mui/material/MenuItem'
 
 // Third-party Imports
 import classnames from 'classnames'
@@ -42,11 +37,8 @@ import type { ThemeColor } from '@core/types'
 import type { UsersType } from '@/types/apps/userTypes'
 
 // Component Imports
-import TableFilters from './TableFilters'
 import AddUserDrawer from './AddUserDrawer'
-import OptionMenu from '@core/components/option-menu'
 import TablePaginationComponent from '@components/TablePaginationComponent'
-import CustomTextField from '@core/components/mui/TextField'
 import CustomAvatar from '@core/components/mui/Avatar'
 
 // Util Imports
@@ -92,35 +84,6 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   return itemRank.passed
 }
 
-const DebouncedInput = ({
-  value: initialValue,
-  onChange,
-  debounce = 500,
-  ...props
-}: {
-  value: string | number
-  onChange: (value: string | number) => void
-  debounce?: number
-} & Omit<TextFieldProps, 'onChange'>) => {
-  // States
-  const [value, setValue] = useState(initialValue)
-
-  useEffect(() => {
-    setValue(initialValue)
-  }, [initialValue])
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      onChange(value)
-    }, debounce)
-
-    return () => clearTimeout(timeout)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value])
-
-  return <CustomTextField {...props} value={value} onChange={e => setValue(e.target.value)} />
-}
-
 // Vars
 const userRoleObj: UserRoleType = {
   admin: { icon: 'tabler-crown', color: 'error' },
@@ -144,7 +107,6 @@ const UserListTable = ({ tableData }: { tableData?: UsersType[] }) => {
   const [addUserOpen, setAddUserOpen] = useState(false)
   const [rowSelection, setRowSelection] = useState({})
   const [data, setData] = useState(...[tableData])
-  const [filteredData, setFilteredData] = useState(data)
   const [globalFilter, setGlobalFilter] = useState('')
 
   // Hooks
@@ -174,7 +136,7 @@ const UserListTable = ({ tableData }: { tableData?: UsersType[] }) => {
         )
       },
       columnHelper.accessor('fullName', {
-        header: 'User',
+        header: 'کاربر',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
             {getAvatar({ avatar: row.original.avatar, fullName: row.original.fullName })}
@@ -188,7 +150,7 @@ const UserListTable = ({ tableData }: { tableData?: UsersType[] }) => {
         )
       }),
       columnHelper.accessor('role', {
-        header: 'Role',
+        header: 'نقش',
         cell: ({ row }) => (
           <div className='flex items-center gap-2'>
             <Icon
@@ -201,20 +163,8 @@ const UserListTable = ({ tableData }: { tableData?: UsersType[] }) => {
           </div>
         )
       }),
-      columnHelper.accessor('currentPlan', {
-        header: 'Plan',
-        cell: ({ row }) => (
-          <Typography className='capitalize' color='text.primary'>
-            {row.original.currentPlan}
-          </Typography>
-        )
-      }),
-      columnHelper.accessor('billing', {
-        header: 'Billing',
-        cell: ({ row }) => <Typography>{row.original.billing}</Typography>
-      }),
       columnHelper.accessor('status', {
-        header: 'Status',
+        header: 'وضعیت',
         cell: ({ row }) => (
           <div className='flex items-center gap-3'>
             <Chip
@@ -228,44 +178,23 @@ const UserListTable = ({ tableData }: { tableData?: UsersType[] }) => {
         )
       }),
       columnHelper.accessor('action', {
-        header: 'Action',
+        header: 'عملیات',
         cell: ({ row }) => (
           <div className='flex items-center'>
             <IconButton onClick={() => setData(data?.filter(product => product.id !== row.original.id))}>
               <i className='tabler-trash text-textSecondary' />
             </IconButton>
-            <IconButton>
-              <Link href={'/apps/user/view'} className='flex'>
-                <i className='tabler-eye text-textSecondary' />
-              </Link>
-            </IconButton>
-            <OptionMenu
-              iconButtonProps={{ size: 'medium' }}
-              iconClassName='text-textSecondary'
-              options={[
-                {
-                  text: 'Download',
-                  icon: 'tabler-download',
-                  menuItemProps: { className: 'flex items-center gap-2 text-textSecondary' }
-                },
-                {
-                  text: 'Edit',
-                  icon: 'tabler-edit',
-                  menuItemProps: { className: 'flex items-center gap-2 text-textSecondary' }
-                }
-              ]}
-            />
           </div>
         ),
         enableSorting: false
       })
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data, filteredData]
+    [data]
   )
 
   const table = useReactTable({
-    data: filteredData as UsersType[],
+    data: data as UsersType[],
     columns,
     filterFns: {
       fuzzy: fuzzyFilter
@@ -306,44 +235,20 @@ const UserListTable = ({ tableData }: { tableData?: UsersType[] }) => {
   return (
     <>
       <Card>
-        <CardHeader title='Filters' className='pbe-4' />
-        <TableFilters setData={setFilteredData} tableData={data} />
-        <div className='flex justify-between flex-col items-start md:flex-row md:items-center p-6 border-bs gap-4'>
-          <CustomTextField
-            select
-            value={table.getState().pagination.pageSize}
-            onChange={e => table.setPageSize(Number(e.target.value))}
-            className='max-sm:is-full sm:is-[70px]'
-          >
-            <MenuItem value='10'>10</MenuItem>
-            <MenuItem value='25'>25</MenuItem>
-            <MenuItem value='50'>50</MenuItem>
-          </CustomTextField>
-          <div className='flex flex-col sm:flex-row max-sm:is-full items-start sm:items-center gap-4'>
-            <DebouncedInput
-              value={globalFilter ?? ''}
-              onChange={value => setGlobalFilter(String(value))}
-              placeholder='Search User'
-              className='max-sm:is-full'
-            />
-            <Button
-              color='secondary'
-              variant='tonal'
-              startIcon={<i className='tabler-upload' />}
-              className='max-sm:is-full'
-            >
-              Export
-            </Button>
+        <CardHeader
+          title='کاربران'
+          className='pbe-4'
+          action={
             <Button
               variant='contained'
               startIcon={<i className='tabler-plus' />}
               onClick={() => setAddUserOpen(!addUserOpen)}
               className='max-sm:is-full'
             >
-              Add New User
+              افزودن کاربر
             </Button>
-          </div>
-        </div>
+          }
+        />
         <div className='overflow-x-auto'>
           <table className={tableStyles.table}>
             <thead>

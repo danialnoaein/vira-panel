@@ -34,17 +34,16 @@ export const authOptions: NextAuthOptions = {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ phone: username, password })
+            body: JSON.stringify({ username, password })
           })
+
+          console.log({ res })
 
           const data = await res.json()
 
           if (res.status === 401) {
             throw new Error(JSON.stringify(data))
           }
-
-          console.log({ username, password })
-          console.log({ data })
 
           if (res.status === 200) {
             /*
@@ -107,10 +106,9 @@ export const authOptions: NextAuthOptions = {
          * For adding custom parameters to user in session, we first need to add those parameters
          * in token which then will be available in the `session()` callback
          */
-        console.log({ user })
-
         token.name = user.user.name
         token.username = user.user.username
+        token.backendToken = user.access_token
       }
 
       return token

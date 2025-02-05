@@ -17,6 +17,8 @@ const NivoChordChart = () => {
     [292, 719, 307, 274, 409]
   ]
 
+  const labels = ['John', 'Raoul', 'Jane', 'Marcel', 'Ibrahim']
+
   return (
     <Card>
       <CardHeader
@@ -29,6 +31,23 @@ const NivoChordChart = () => {
         }}
       />
       <CardContent>
+        <ResponsiveChord
+          data={data}
+          keys={labels}
+          margin={{ top: 40, right: 60, bottom: 40, left: 60 }}
+          padAngle={0.02}
+          innerRadiusRatio={0.9}
+          colors={{ scheme: 'nivo' }}
+          arcOpacity={0.8}
+          arcBorderWidth={1}
+          ribbonOpacity={0.7}
+          ribbonBorderWidth={1}
+          enableLabel={true}
+          labelOffset={12}
+          labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+          isInteractive={true}
+        />
+
         <ResponsiveChord
           data={data}
           keys={['John', 'Raoul', 'Jane', 'Marcel', 'Ibrahim']}

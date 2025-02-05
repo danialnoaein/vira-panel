@@ -1,17 +1,16 @@
 // MUI Imports
 import Grid from '@mui/material/Grid'
 
-// Component Imports
-import NivoChordChart from '@/views/charts/nivo/NivoChordChart'
+import IncomeReport from '@/views/pages/reports/income'
 
-const ApexCharts = () => {
+const IncomeReportPage = () => {
   return (
     <Grid container spacing={6}>
       <Grid item xs={12} md={12}>
-        <NivoChordChart />
+        <IncomeReport />
       </Grid>
     </Grid>
   )
 }
 
-export default ApexCharts
+export default IncomeReportPage

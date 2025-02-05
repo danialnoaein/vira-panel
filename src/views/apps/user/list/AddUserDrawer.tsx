@@ -108,7 +108,7 @@ const AddUserDrawer = (props: Props) => {
       sx={{ '& .MuiDrawer-paper': { width: { xs: 300, sm: 400 } } }}
     >
       <div className='flex items-center justify-between plb-5 pli-6'>
-        <Typography variant='h5'>Add New User</Typography>
+        <Typography variant='h5'>ایجاد کاربر جدید</Typography>
         <IconButton size='small' onClick={handleReset}>
           <i className='tabler-x text-2xl text-textPrimary' />
         </IconButton>
@@ -124,8 +124,8 @@ const AddUserDrawer = (props: Props) => {
               <CustomTextField
                 {...field}
                 fullWidth
-                label='Full Name'
-                placeholder='John Doe'
+                label='نام'
+                placeholder=''
                 {...(errors.fullName && { error: true, helperText: 'This field is required.' })}
               />
             )}
@@ -138,24 +138,9 @@ const AddUserDrawer = (props: Props) => {
               <CustomTextField
                 {...field}
                 fullWidth
-                label='Username'
+                label='نام کاربری'
                 placeholder='johndoe'
                 {...(errors.username && { error: true, helperText: 'This field is required.' })}
-              />
-            )}
-          />
-          <Controller
-            name='email'
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <CustomTextField
-                {...field}
-                fullWidth
-                type='email'
-                label='Email'
-                placeholder='johndoe@gmail.com'
-                {...(errors.email && { error: true, helperText: 'This field is required.' })}
               />
             )}
           />
@@ -168,36 +153,12 @@ const AddUserDrawer = (props: Props) => {
                 select
                 fullWidth
                 id='select-role'
-                label='Select Role'
+                label='نقش'
                 {...field}
                 {...(errors.role && { error: true, helperText: 'This field is required.' })}
               >
-                <MenuItem value='admin'>Admin</MenuItem>
-                <MenuItem value='author'>Author</MenuItem>
-                <MenuItem value='editor'>Editor</MenuItem>
-                <MenuItem value='maintainer'>Maintainer</MenuItem>
-                <MenuItem value='subscriber'>Subscriber</MenuItem>
-              </CustomTextField>
-            )}
-          />
-          <Controller
-            name='plan'
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <CustomTextField
-                select
-                fullWidth
-                id='select-plan'
-                label='Select Plan'
-                {...field}
-                inputProps={{ placeholder: 'Select Plan' }}
-                {...(errors.plan && { error: true, helperText: 'This field is required.' })}
-              >
-                <MenuItem value='basic'>Basic</MenuItem>
-                <MenuItem value='company'>Company</MenuItem>
-                <MenuItem value='enterprise'>Enterprise</MenuItem>
-                <MenuItem value='team'>Team</MenuItem>
+                <MenuItem value='admin'>مدیر</MenuItem>
+                <MenuItem value='author'>ناظر</MenuItem>
               </CustomTextField>
             )}
           />
@@ -210,51 +171,22 @@ const AddUserDrawer = (props: Props) => {
                 select
                 fullWidth
                 id='select-status'
-                label='Select Status'
+                label='وضعیت'
                 {...field}
                 {...(errors.status && { error: true, helperText: 'This field is required.' })}
               >
-                <MenuItem value='pending'>Pending</MenuItem>
-                <MenuItem value='active'>Active</MenuItem>
-                <MenuItem value='inactive'>Inactive</MenuItem>
+                <MenuItem value='active'>فعال</MenuItem>
+                <MenuItem value='inactive'>غیرفعال</MenuItem>
               </CustomTextField>
             )}
           />
-          <CustomTextField
-            label='Company'
-            fullWidth
-            placeholder='Company PVT LTD'
-            value={formData.company}
-            onChange={e => setFormData({ ...formData, company: e.target.value })}
-          />
-          <CustomTextField
-            select
-            fullWidth
-            id='country'
-            value={formData.country}
-            onChange={e => setFormData({ ...formData, country: e.target.value })}
-            label='Select Country'
-            inputProps={{ placeholder: 'Country' }}
-          >
-            <MenuItem value='India'>India</MenuItem>
-            <MenuItem value='USA'>USA</MenuItem>
-            <MenuItem value='Australia'>Australia</MenuItem>
-            <MenuItem value='Germany'>Germany</MenuItem>
-          </CustomTextField>
-          <CustomTextField
-            label='Contact'
-            type='number'
-            fullWidth
-            placeholder='(397) 294-5153'
-            value={formData.contact}
-            onChange={e => setFormData({ ...formData, contact: e.target.value })}
-          />
+
           <div className='flex items-center gap-4'>
             <Button variant='contained' type='submit'>
-              Submit
+              ایجاد
             </Button>
             <Button variant='tonal' color='error' type='reset' onClick={() => handleReset()}>
-              Cancel
+              لغو
             </Button>
           </div>
         </form>

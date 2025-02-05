@@ -1,7 +1,10 @@
 'use client'
 
-// React Imports
 import type { ReactElement } from 'react'
+
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+
+// React Imports
 
 // Type Imports
 import type { SystemMode } from '@core/types'
@@ -25,10 +28,14 @@ const LayoutWrapper = (props: LayoutWrapperProps) => {
 
   useLayoutInit(systemMode)
 
+  const queryClient = new QueryClient()
+
   // Return the layout based on the layout context
   return (
     <div className='flex flex-col flex-auto' data-skin={settings.skin}>
-      {settings.layout === 'horizontal' ? horizontalLayout : verticalLayout}
+      <QueryClientProvider client={queryClient}>
+        {settings.layout === 'horizontal' ? horizontalLayout : verticalLayout}
+      </QueryClientProvider>
     </div>
   )
 }

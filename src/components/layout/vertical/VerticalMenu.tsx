@@ -73,47 +73,33 @@ const VerticalMenu = ({ scrollMenu }: Props) => {
         renderExpandedMenuItemIcon={{ icon: <i className='tabler-circle text-xs' /> }}
         menuSectionStyles={menuSectionStyles(verticalNavOptions, theme)}
       >
-        {/*  <SubMenu
-          label={'داشبورد'}
-          icon={<i className='tabler-smart-home' />}
-          suffix={<CustomChip label='5' size='small' color='error' round='true' />}
-        >
-          <MenuItem icon={<i className='tabler-smart-home' />} href={`/dashboards/crm`}>{'دید کلی'}</MenuItem>
-         <MenuItem href={`/dashboards/analytics`}>{'آنالیز'}</MenuItem>
-          <MenuItem href={`/dashboards/ecommerce`}>{'eCommerce'}</MenuItem>
-          <MenuItem href={`/dashboards/academy`}>{'Academy'}</MenuItem>
-          <MenuItem href={`/dashboards/logistics`}>{'Logistics'}</MenuItem> 
-        </SubMenu>*/}
         <MenuItem icon={<i className='tabler-smart-home' />} href={`/reports/overview`}>
           {'دید کلی'}
         </MenuItem>
 
         <MenuSection label={'عملکرد'}>
-          <MenuItem href={`/reports/four`}>{' درامد'}</MenuItem>
-          {/* <MenuItem href={`/reports/three`}>{'سود و زیان '}</MenuItem> */}
-          {/* <MenuItem href={`/reports/five`}>{'عملکرد واحد'}</MenuItem> */}
-          {/* <MenuItem href={`/reports/six`}>{'عملکرد هر شخص'}</MenuItem> */}
+          <MenuItem icon={<i className='tabler-currency-dollar' />} href={`/reports/four`}>
+            {' درامد'}
+          </MenuItem>
         </MenuSection>
 
         <MenuSection label={'بار'}>
-          <MenuItem href={`/reports/one`}>{'مقایسه بار از مبدا'}</MenuItem>
+          <MenuItem icon={<i className='tabler-car' />} href={`/reports/one`}>
+            {'مقایسه بار از مبدا'}
+          </MenuItem>
           {/* <MenuItem href={`/reports/two`}>{'مقایسه بار ها از مقصد'}</MenuItem> */}
         </MenuSection>
 
         <MenuSection label={'مدیریت'}>
           {/* <MenuItem href={`/reports/overview`}>{'درخواست ها'}</MenuItem> */}
-          <MenuItem href={`/reports/settings`}>{'تنظیمات'}</MenuItem>
+          <MenuItem icon={<i className='tabler-users' />} href={`/users`}>
+            {'کاربران'}
+          </MenuItem>
+          <MenuItem icon={<i className='tabler-settings' />} href={`/reports/settings`}>
+            {'تنظیمات'}
+          </MenuItem>
         </MenuSection>
       </Menu>
-      {/* <Menu
-        popoutMenuOffset={{ mainAxis: 23 }}
-        menuItemStyles={menuItemStyles(verticalNavOptions, theme)}
-        renderExpandIcon={({ open }) => <RenderExpandIcon open={open} transitionDuration={transitionDuration} />}
-        renderExpandedMenuItemIcon={{ icon: <i className='tabler-circle text-xs' /> }}
-        menuSectionStyles={menuSectionStyles(verticalNavOptions, theme)}
-      >
-        <GenerateVerticalMenu menuData={menuData(dictionary)} />
-      </Menu> */}
     </ScrollWrapper>
   )
 }

@@ -7,7 +7,6 @@ declare module 'next-auth' {
     user: {
       id: string
       roles: any[]
-      schools: any[] // Add the schools property
       isAdmin: boolean
       national_number: string
       username: string
@@ -22,8 +21,8 @@ declare module 'next-auth' {
     username: string
     token: string
     isAdmin: boolean
-    schools: any[] // Add the schools property
     user: any
+    access_token: string
   }
 }
 
@@ -36,6 +35,6 @@ declare module 'next-auth/jwt' {
     roles: any[]
     accessToken: string
     username: string
-    schools: any[] // Add the schools property
+    backendToken: string
   }
 }
