@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: nextjs-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000' # Map port 3000 of the container to port 3000 on the host
+    environment:
+      - NEXTAUTH_URL=http://localhost:3000 # Set the URL where your app is hosted
+      - NEXTAUTH_SECRET=dani # Replace with your actual secret key
+      - NODE_ENV=production # Ensure the app runs in production mode
+    volumes:
+      - .:/app # Mount the current directory to /app in the container (optional for development)
+    networks:
+      - nextjs-network
+
+networks:
+  nextjs-network:
+    driver: bridge
