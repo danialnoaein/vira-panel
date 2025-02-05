@@ -1,37 +1,38 @@
-# Stage 1: Build Stage
+# Use the official Node.js image as the base image
 FROM node:18-alpine AS build
 
-# Set working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if any)
-COPY package*.json ./
-
-# Install global dependencies
+# Install pnpm globally
 RUN npm install -g pnpm
 
-# Install project dependencies
+# Copy the entire application to the working directory
+COPY . .
+
+# Install dependencies
 RUN pnpm install
 
-# Copy the rest of the application code
-COPY . .
-# Build the application
+# Build the Next.js app
 RUN pnpm run build
 
-# Stage 2: Production Stage
-FROM node:18-alpine AS production
+# Stage 2: Production
+FROM node:18-alpine
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy only necessary files from the build stage
-COPY --from=build /app/.next ./.next
-COPY --from=build /app/public ./public
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/package.json ./package.json
 
-# Expose the port (default for Next.js is 3000)
-EXPOSE 3000
+# Install pnpm globally
+RUN npm install -g pnpm
 
-# Start the application
-CMD ["npm", "start"]
+# Copy the built files from the build stage
+# COPY --from=build /app ./
+COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=build --chown=nextjs:nodejs /app/public ./public
+# Expose port 3000
+EXPOSE 80
+
+# Start the Next.js app
+CMD ["node", "server.js"]
