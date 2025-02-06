@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM node:18-alpine AS build
+FROM node:18-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -15,15 +15,6 @@ RUN pnpm install
 
 # Build the Next.js app
 RUN pnpm run build
-
-# Stage 2: Production
-FROM node:18-alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Install pnpm globally
-RUN npm install -g pnpm
 
 # Copy the built files from the build stage
 COPY --from=build /app/.next/standalone ./
