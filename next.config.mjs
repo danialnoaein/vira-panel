@@ -2,10 +2,6 @@
 const nextConfig = {
   basePath: process.env.BASEPATH || '',
   assetPrefix: process.env.BASEPATH || '',
-  output: 'standalone',
-  eslint: {
-    ignoreDuringBuilds: true // Disable ESLint during builds
-  },
   headers: () => [
     {
       source: '/:path*',
@@ -17,11 +13,12 @@ const nextConfig = {
       ]
     }
   ],
+  output: 'standalone',
   redirects: async () => {
     return [
       {
         source: '/',
-        destination: '/reports/overview',
+        destination: '/dashboard',
         permanent: true,
         locale: false
       }
