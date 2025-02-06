@@ -17,9 +17,9 @@ RUN pnpm install
 RUN pnpm run build
 
 # Copy the built files from the build stage
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/.next/static ./.next/static
-COPY --from=build /app/public ./public
+COPY /app/.next/standalone ./
+COPY /app/.next/static ./.next/static
+COPY /app/public ./public
 
 # Expose port 3000
 EXPOSE 3000
