@@ -21,7 +21,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/dashboard',
+        destination: '/reports/overview',
         permanent: true,
         locale: false
       }
