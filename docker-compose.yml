@@ -1,18 +1,13 @@
 version: '3.8'
 
-networks:
-  vira:
-    driver: bridge
 services:
   app:
     build:
       context: .
     image: nextjs-dev
     ports:
-      - '3000:3000'
+      - '80:3000'
     environment:
       NODE_ENV: development
     volumes:
-      - /root/vira-panel/.env:/app/.env
-    networks:
-      - vira
+      - /var/projects/frontend/.env:/app/.env
