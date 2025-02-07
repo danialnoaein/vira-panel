@@ -35,4 +35,5 @@ COPY --from=build --chown=nextjs:nodejs /app/public ./public
 EXPOSE 3000
 
 # Start the Next.js app
-CMD ["node", "server.js"]
+# CMD ["node", "server.js"]
+CMD ["pnpm" , "dev"]
