@@ -21,7 +21,7 @@ const defaultSuggestions: DefaultSuggestionsType[] = [
     items: [
       {
         label: 'عملکرد شخص',
-        href: '/reports/four',
+        href: '/reports/income',
         icon: 'tabler-chart-pie-2'
       }
     ]

@@ -4,6 +4,7 @@ FROM node:18-alpine AS build
 # Set the working directory inside the container
 WORKDIR /app
 
+ENV CI=true
 # Install pnpm globally
 RUN npm install -g pnpm
 

@@ -78,16 +78,18 @@ const VerticalMenu = ({ scrollMenu }: Props) => {
         </MenuItem>
 
         <MenuSection label={'عملکرد'}>
-          <MenuItem icon={<i className='tabler-currency-dollar' />} href={`/reports/four`}>
+          <MenuItem icon={<i className='tabler-currency-dollar' />} href={`/reports/income`}>
             {' درامد'}
           </MenuItem>
         </MenuSection>
 
         <MenuSection label={'بار'}>
-          <MenuItem icon={<i className='tabler-car' />} href={`/reports/one`}>
+          <MenuItem icon={<i className='tabler-car' />} href={`/reports/cargofromorigin`}>
             {'مقایسه بار از مبدا'}
           </MenuItem>
-          {/* <MenuItem href={`/reports/two`}>{'مقایسه بار ها از مقصد'}</MenuItem> */}
+          <MenuItem icon={<i className='tabler-car' />} href={`/reports/cargofromdestination`}>
+            {'مقایسه بار از مقصد'}
+          </MenuItem>
         </MenuSection>
 
         <MenuSection label={'مدیریت'}>

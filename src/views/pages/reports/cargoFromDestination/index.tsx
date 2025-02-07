@@ -41,26 +41,24 @@ const defaultOptions: ApexOptions = {
   ]
 }
 
-const CargoFromOriginReport = () => {
+const CargoFromDestinationReport = () => {
   // Vars
 
-  const getTodos = async () => {
-    const fetch = await axios(`/api/reports/cargo-by-origin?start_date=2024-03-20&end_date=2025-03-21`, {
+  const getData = async () => {
+    const fetch = await axios(`/api/reports/cargo-by-destination?start_date=2024-03-20&end_date=2025-03-21`, {
       method: 'GET'
     })
-
-    console.log(fetch.data)
 
     return fetch.data.data
   }
 
   // Queries
-  const query = useQuery({ queryKey: ['todos'], queryFn: getTodos })
+  const query = useQuery({ queryKey: ['todos'], queryFn: getData })
 
   return (
     <Card>
       <CardHeader
-        title='مقایسه بار از مبدا'
+        title='مقایسه بار از مقصد'
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -72,7 +70,7 @@ const CargoFromOriginReport = () => {
         {!query.data && <div>Loading...</div>}
         {query.data && (
           <AppReactApexCharts
-            options={{ ...defaultOptions, labels: query.data.map((item: any) => `${item.senderCityName}`) ?? [] }}
+            options={{ ...defaultOptions, labels: query.data.map((item: any) => `${item.receiverCityName}`) ?? [] }}
             series={query.data.map((item: any) => `${item.shipment_count}`) ?? []}
             type='polarArea'
           />
@@ -82,4 +80,4 @@ const CargoFromOriginReport = () => {
   )
 }
 
-export default CargoFromOriginReport
+export default CargoFromDestinationReport

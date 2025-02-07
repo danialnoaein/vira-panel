@@ -74,7 +74,7 @@ const IncomeReport = () => {
   }
 
   const getTodos = async () => {
-    const fetch = await axios(`/api/reports/income?start_date=2024-02-01&end_date=2025-01-30`, {
+    const fetch = await axios(`/api/reports/income?start_date=2024-03-20&end_date=2025-03-21`, {
       method: 'GET'
     })
 
@@ -96,13 +96,30 @@ const IncomeReport = () => {
         }}
       />
       <CardContent>
-        <AppReactApexCharts
-          type='bar'
-          width='100%'
-          height={400}
-          options={options}
-          series={[{ data: query.data ?? [] }]}
-        />
+        {!query.data && <div>Loading...</div>}
+        {query.data && (
+          <AppReactApexCharts
+            type='bar'
+            width='100%'
+            height={400}
+            options={options}
+            series={[{ data: query.data ?? [] }]}
+            labels={[
+              'فروردین',
+              'اردیبهشت',
+              'خرداد',
+              'تیر',
+              'مرداد',
+              'شهریور',
+              'مهر',
+              'آبان',
+              'آذر',
+              'دی',
+              'بهمن',
+              'اسفند'
+            ]}
+          />
+        )}
       </CardContent>
     </Card>
   )

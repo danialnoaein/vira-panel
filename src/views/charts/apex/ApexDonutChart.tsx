@@ -67,7 +67,7 @@ const ApexDonutChart = () => {
               show: true,
               fontSize: '1.2rem',
               label: 'Operational',
-              formatter: () => '31%',
+              formatter: () => '41%',
               color: 'var(--mui-palette-text-primary)'
             }
           }
