@@ -32,7 +32,7 @@ COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=build --chown=nextjs:nodejs /app/public ./public
 # Expose port 3000
-EXPOSE 80
+EXPOSE 3000
 
 # Start the Next.js app
 CMD ["node", "server.js"]
