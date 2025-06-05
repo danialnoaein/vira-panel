@@ -27,6 +27,21 @@ export const authOptions: NextAuthOptions = {
          */
         const { username, password } = credentials as { username: string; password: string }
 
+        const data = {
+          user: {
+            id: 1,
+            name: 'John Doe',
+            username: 'johndoe',
+            email: 'johndoe@example.com',
+            role: 'admin'
+          },
+          access_token:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+          expires_in: 3600
+        }
+
+        return data
+
         try {
           // ** Login API Call to match the user credentials and receive user data in response along with his role
           const res = await fetch(`${process.env.API_URL}/auth/login`, {

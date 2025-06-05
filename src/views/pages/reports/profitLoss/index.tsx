@@ -16,7 +16,7 @@ import axios from 'axios'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const IncomeReport = () => {
+const ProfitLossReport = () => {
   // Vars
   const divider = 'var(--mui-palette-divider)'
   const disabledText = 'var(--mui-palette-text-disabled)'
@@ -26,14 +26,28 @@ const IncomeReport = () => {
       parentHeightOffset: 0,
       toolbar: { show: false }
     },
-    colors: ['#52C41A'],
+    colors: undefined,
     dataLabels: { enabled: false },
     plotOptions: {
       bar: {
         borderRadius: 8,
         borderRadiusApplication: 'end',
         borderRadiusWhenStacked: 'all',
-        barHeight: '30%'
+        barHeight: '30%',
+        colors: {
+          ranges: [
+            {
+              from: -Infinity,
+              to: 0,
+              color: '#FF4D4F' // Red for loss
+            },
+            {
+              from: 1,
+              to: Infinity,
+              color: '#52C41A' // Green for profit
+            }
+          ]
+        }
       }
     },
     grid: {
@@ -74,7 +88,20 @@ const IncomeReport = () => {
   }
 
   const getTodos = async () => {
-    return [12000, 15000, 18000, 20000, 17000, 22000, 25000, 24000, 21000, 19000, 23000, 26000]
+    return [
+      12000, // فروردین (Profit)
+      -5000, // اردیبهشت (Loss)
+      18000, // خرداد (Profit)
+      -2000, // تیر (Loss)
+      17000, // مرداد (Profit)
+      -8000, // شهریور (Loss)
+      25000, // مهر (Profit)
+      24000, // آبان (Profit)
+      -10000, // آذر (Loss)
+      19000, // دی (Profit)
+      -3000, // بهمن (Loss)
+      26000 // اسفند (Profit)
+    ]
 
     const fetch = await axios(`/api/reports/income?start_date=2024-03-20&end_date=2025-03-21`, {
       method: 'GET'
@@ -89,7 +116,7 @@ const IncomeReport = () => {
   return (
     <Card>
       <CardHeader
-        title='درآمد'
+        title='سود و زیان'
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -127,4 +154,4 @@ const IncomeReport = () => {
   )
 }
 
-export default IncomeReport
+export default ProfitLossReport

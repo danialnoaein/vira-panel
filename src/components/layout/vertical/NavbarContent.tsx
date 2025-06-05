@@ -13,6 +13,7 @@ import UserDropdown from '@components/layout/shared/UserDropdown'
 
 // Util Imports
 import { verticalLayoutClasses } from '@layouts/utils/layoutClasses'
+import SendMailDropdown from '../shared/SendMailDropdown'
 
 const notifications: NotificationsType[] = [
   {
@@ -35,30 +36,6 @@ const notifications: NotificationsType[] = [
     subtitle: 'You have new message from Bernard Woods',
     time: 'May 18, 8:26 AM',
     read: true
-  },
-  {
-    avatarIcon: 'tabler-chart-bar',
-    title: 'Monthly report generated',
-    subtitle: 'July month financial report is generated',
-    avatarColor: 'info',
-    time: 'Apr 24, 10:30 AM',
-    read: true
-  },
-  {
-    avatarText: 'MG',
-    title: 'Application has been approved 🚀',
-    subtitle: 'Your Meta Gadgets project application has been approved.',
-    avatarColor: 'success',
-    time: 'Feb 17, 12:17 PM',
-    read: true
-  },
-  {
-    avatarIcon: 'tabler-mail',
-    title: 'New message from Harry',
-    subtitle: 'You have new message from Harry',
-    avatarColor: 'error',
-    time: 'Jan 6, 1:48 PM',
-    read: true
   }
 ]
 
@@ -71,8 +48,9 @@ const NavbarContent = () => {
       </div>
       <div className='flex items-center'>
         {/* <LanguageDropdown /> */}
-        <ModeDropdown />
+        {/* <ModeDropdown /> */}
         {/* <ShortcutsDropdown shortcuts={shortcuts} /> */}
+        <SendMailDropdown />
         <NotificationsDropdown notifications={notifications} />
         <UserDropdown />
       </div>

@@ -184,7 +184,7 @@ const NotificationDropdown = ({ notifications }: { notifications: NotificationsT
           }}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         >
-          <i className='tabler-bell' />
+          <i className='tabler-mail' />
         </Badge>
       </IconButton>
       <Popper
@@ -215,12 +215,12 @@ const NotificationDropdown = ({ notifications }: { notifications: NotificationsT
                 <div className='bs-full flex flex-col'>
                   <div className='flex items-center justify-between plb-3.5 pli-4 is-full gap-2'>
                     <Typography variant='h6' className='flex-auto'>
-                      Notifications
+                      پیام ها
                     </Typography>
                     {notificationCount > 0 && (
-                      <Chip size='small' variant='tonal' color='primary' label={`${notificationCount} New`} />
+                      <Chip size='small' variant='tonal' color='primary' label={`${notificationCount} پیام جدید`} />
                     )}
-                    <Tooltip
+                    {/* <Tooltip
                       title={readAll ? 'Mark all as unread' : 'Mark all as read'}
                       placement={placement === 'bottom-end' ? 'left' : 'right'}
                       slotProps={{
@@ -241,7 +241,7 @@ const NotificationDropdown = ({ notifications }: { notifications: NotificationsT
                       ) : (
                         <></>
                       )}
-                    </Tooltip>
+                    </Tooltip> */}
                   </div>
                   <Divider />
                   <ScrollWrapper hidden={hidden}>
@@ -287,10 +287,10 @@ const NotificationDropdown = ({ notifications }: { notifications: NotificationsT
                                 'invisible group-hover:visible': read
                               })}
                             />
-                            <i
+                            {/* <i
                               className='tabler-x text-xl invisible group-hover:visible'
                               onClick={e => handleRemoveNotification(e, index)}
-                            />
+                            /> */}
                           </div>
                         </div>
                       )
@@ -299,7 +299,7 @@ const NotificationDropdown = ({ notifications }: { notifications: NotificationsT
                   <Divider />
                   <div className='p-4'>
                     <Button fullWidth variant='contained' size='small'>
-                      View All Notifications
+                      مشاهده همه ی پیام ها
                     </Button>
                   </div>
                 </div>

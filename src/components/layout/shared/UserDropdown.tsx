@@ -79,8 +79,6 @@ const UserDropdown = () => {
     }
   }
 
-  console.log({ session })
-
   return (
     <>
       <Badge
@@ -127,8 +125,8 @@ const UserDropdown = () => {
                   </div>
                   <Divider className='mlb-1' />
                   <MenuItem className='mli-2 gap-3' onClick={e => handleDropdownClose(e, '/pages/user-profile')}>
-                    <i className='tabler-user' />
-                    <Typography color='text.primary'>پروفایل</Typography>
+                    <i className='tabler-key' />
+                    <Typography color='text.primary'>تغییر کلمه عبور</Typography>
                   </MenuItem>
                   {/* <MenuItem className='mli-2 gap-3' onClick={e => handleDropdownClose(e, '/pages/account-settings')}>
                     <i className='tabler-settings' />

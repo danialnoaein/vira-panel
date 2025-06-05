@@ -16,7 +16,7 @@ import axios from 'axios'
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
 
-const IncomeReport = () => {
+const CostReport = () => {
   // Vars
   const divider = 'var(--mui-palette-divider)'
   const disabledText = 'var(--mui-palette-text-disabled)'
@@ -26,7 +26,7 @@ const IncomeReport = () => {
       parentHeightOffset: 0,
       toolbar: { show: false }
     },
-    colors: ['#52C41A'],
+    colors: ['#FF4D4F'],
     dataLabels: { enabled: false },
     plotOptions: {
       bar: {
@@ -89,7 +89,7 @@ const IncomeReport = () => {
   return (
     <Card>
       <CardHeader
-        title='درآمد'
+        title='هزینه'
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
@@ -127,4 +127,4 @@ const IncomeReport = () => {
   )
 }
 
-export default IncomeReport
+export default CostReport

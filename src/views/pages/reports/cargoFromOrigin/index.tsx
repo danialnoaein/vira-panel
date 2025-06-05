@@ -45,13 +45,38 @@ const CargoFromOriginReport = () => {
   // Vars
 
   const getTodos = async () => {
-    const fetch = await axios(`/api/reports/cargo-by-origin?start_date=2024-03-20&end_date=2025-03-21`, {
-      method: 'GET'
-    })
+    return [
+      {
+        senderCityName: 'تهران',
+        shipment_count: 120
+      },
+      {
+        senderCityName: 'اصفهان',
+        shipment_count: 95
+      },
+      {
+        senderCityName: 'مشهد',
+        shipment_count: 80
+      },
+      {
+        senderCityName: 'شیراز',
+        shipment_count: 70
+      },
+      {
+        senderCityName: 'تبریز',
+        shipment_count: 60
+      },
+      {
+        senderCityName: 'اهواز',
+        shipment_count: 50
+      }
+    ]
 
-    console.log(fetch.data)
+    // const fetch = await axios(`/api/reports/cargo-by-origin?start_date=2024-03-20&end_date=2025-03-21`, {
+    //   method: 'GET'
+    // })
 
-    return fetch.data.data
+    // return fetch.data.data
   }
 
   // Queries
@@ -60,7 +85,7 @@ const CargoFromOriginReport = () => {
   return (
     <Card>
       <CardHeader
-        title='مقایسه بار از مبدا'
+        title='حمل بار از محل بارگیری'
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],

@@ -12,7 +12,15 @@ import Typography from '@mui/material/Typography'
 // Third-party Imports
 import classnames from 'classnames'
 
-import type { UserDataType } from '@components/card-statistics/HorizontalWithSubtitle'
+import type { ThemeColor } from '@/@core/types'
+
+export type UserDataType = {
+  title: string
+  stats: string
+  avatarIcon: string
+  avatarColor?: ThemeColor
+  subtitle: string
+}
 
 // Component Imports
 import CustomAvatar from '@core/components/mui/Avatar'
@@ -20,71 +28,29 @@ import CustomAvatar from '@core/components/mui/Avatar'
 // Vars
 const data: UserDataType[] = [
   {
-    title: ' مکانیزم های فعال',
+    title: 'حکم کار',
     stats: '59',
     avatarIcon: 'tabler-users',
-    avatarColor: 'warning',
-    trend: 'positive',
-    trendNumber: '29%',
-    subtitle: 'مکانیزم'
-  },
-  {
-    title: ' قرارداد فعال',
-    stats: '47',
-    avatarIcon: 'tabler-ballpen',
     avatarColor: 'info',
-    trend: 'positive',
-    trendNumber: '18%',
-    subtitle: 'نفر'
+    subtitle: 'حکم'
   },
   {
-    title: 'درخواست های مرخصی',
-    stats: '4',
-    avatarIcon: 'tabler-user-plus',
-    avatarColor: 'warning',
-    trend: 'positive',
-    trendNumber: '18%',
-    subtitle: 'درخواست'
-  },
-  {
-    title: 'رانندگان فعال',
-    stats: '19',
-    avatarIcon: 'tabler-truck',
-    avatarColor: 'secondary',
-    trend: 'negative',
-    trendNumber: '14%',
-    subtitle: 'نفر'
-  },
-  {
-    title: 'ٔدرآمد تا امروز',
-    stats: '300,000,000',
-    avatarIcon: 'tabler-receipt-dollar',
-    avatarColor: 'success',
-    trend: 'positive',
-    trendNumber: '42%',
-    subtitle: 'تومان'
-  },
-  {
-    title: 'هزینه تا امروز',
+    title: 'هزینه های پیمانکار',
     stats: '237,000,000',
     avatarIcon: 'tabler-receipt-dollar',
-    avatarColor: 'error',
-    trend: 'positive',
-    trendNumber: '42%',
+    avatarColor: 'warning',
     subtitle: 'تومان'
   },
   {
-    title: 'سود و زیان ماه',
-    stats: '300,000,000',
-    avatarIcon: 'tabler-filter-dollar',
-    avatarColor: 'info',
-    trend: 'positive',
-    trendNumber: '42%',
-    subtitle: 'تومان'
+    title: 'در انتظار صورت وضعیت',
+    stats: '4',
+    avatarIcon: 'tabler-mail-exclamation',
+    avatarColor: 'secondary',
+    subtitle: 'درخواست'
   }
 ]
 
-const OverviewCards = () => {
+const WorkshopPerformance = () => {
   return (
     <Grid container spacing={6}>
       {data.map((item, i) => (
@@ -109,4 +75,4 @@ const OverviewCards = () => {
   )
 }
 
-export default OverviewCards
+export default WorkshopPerformance

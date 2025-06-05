@@ -77,27 +77,35 @@ const VerticalMenu = ({ scrollMenu }: Props) => {
           {'دید کلی'}
         </MenuItem>
 
-        <MenuSection label={'عملکرد'}>
-          <MenuItem icon={<i className='tabler-currency-dollar' />} href={`/reports/income`}>
-            {' درامد'}
+        <MenuSection label={'گزارش'}>
+          <MenuItem icon={<i className='tabler-cash' />} href={`/reports/income`}>
+            {'درامد'}
           </MenuItem>
-        </MenuSection>
-
-        <MenuSection label={'بار'}>
-          <MenuItem icon={<i className='tabler-car' />} href={`/reports/cargofromorigin`}>
-            {'مقایسه بار از مبدا'}
+          <MenuItem icon={<i className='tabler-cash' />} href={`/reports/cost`}>
+            {'هزینه'}
+          </MenuItem>
+          <MenuItem icon={<i className='tabler-trending-up' />} href={`/reports/profitloss`}>
+            {'سود و زیان'}
+          </MenuItem>
+          <MenuItem icon={<i className='tabler-car scale-x-[-1]' />} href={`/reports/cargofromorigin`}>
+            {'حمل بار از محل بارگیری'}
           </MenuItem>
           <MenuItem icon={<i className='tabler-car' />} href={`/reports/cargofromdestination`}>
-            {'مقایسه بار از مقصد'}
+            {'حمل بار از محل تخلیه'}
           </MenuItem>
         </MenuSection>
 
         <MenuSection label={'مدیریت'}>
-          {/* <MenuItem href={`/reports/overview`}>{'درخواست ها'}</MenuItem> */}
-          <MenuItem icon={<i className='tabler-users' />} href={`/users`}>
+          <MenuItem icon={<i className='tabler-users' />} href={`/management/employees`}>
+            {'کارمندان'}
+          </MenuItem>
+          <MenuItem icon={<i className='tabler-users' />} href={`/management/riders`}>
+            {'رانندگان'}
+          </MenuItem>
+          <MenuItem icon={<i className='tabler-users' />} href={`/management/users`}>
             {'کاربران'}
           </MenuItem>
-          <MenuItem icon={<i className='tabler-settings' />} href={`/reports/settings`}>
+          <MenuItem icon={<i className='tabler-settings' />} href={`/management/settings`}>
             {'تنظیمات'}
           </MenuItem>
         </MenuSection>

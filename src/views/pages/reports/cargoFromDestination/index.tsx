@@ -45,11 +45,38 @@ const CargoFromDestinationReport = () => {
   // Vars
 
   const getData = async () => {
-    const fetch = await axios(`/api/reports/cargo-by-destination?start_date=2024-03-20&end_date=2025-03-21`, {
-      method: 'GET'
-    })
+    return [
+      {
+        receiverCityName: 'تهران',
+        shipment_count: 120
+      },
+      {
+        receiverCityName: 'اصفهان',
+        shipment_count: 95
+      },
+      {
+        receiverCityName: 'مشهد',
+        shipment_count: 80
+      },
+      {
+        receiverCityName: 'شیراز',
+        shipment_count: 70
+      },
+      {
+        receiverCityName: 'تبریز',
+        shipment_count: 60
+      },
+      {
+        receiverCityName: 'اهواز',
+        shipment_count: 50
+      }
+    ]
 
-    return fetch.data.data
+    // const fetch = await axios(`/api/reports/cargo-by-destination?start_date=2024-03-20&end_date=2025-03-21`, {
+    //   method: 'GET'
+    // })
+
+    // return fetch.data.data
   }
 
   // Queries
@@ -58,7 +85,7 @@ const CargoFromDestinationReport = () => {
   return (
     <Card>
       <CardHeader
-        title='مقایسه بار از مقصد'
+        title='حمل بار از محل تخلیه'
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: ['flex-start', 'center'],
