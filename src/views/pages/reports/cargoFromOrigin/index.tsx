@@ -11,7 +11,6 @@ import CardContent from '@mui/material/CardContent'
 // Third-party Imports
 import type { ApexOptions } from 'apexcharts'
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 
 // Styled Component Imports
 const AppReactApexCharts = dynamic(() => import('@/libs/styles/AppReactApexCharts'))
@@ -82,6 +81,21 @@ const CargoFromOriginReport = () => {
   // Queries
   const query = useQuery({ queryKey: ['todos'], queryFn: getTodos })
 
+  // const series = useMemo(() => {
+  //   if (!query.data) {
+  //     return []
+  //   }
+
+  //   return [
+  //     {
+  //       data:
+  //         query.data.map((item: any) => {
+  //           ;`${item.shipment_count}`
+  //         }) ?? []
+  //     }
+  //   ]
+  // }, [query])
+
   return (
     <Card>
       <CardHeader
@@ -98,7 +112,7 @@ const CargoFromOriginReport = () => {
         {query.data && (
           <AppReactApexCharts
             options={{ ...defaultOptions, labels: query.data.map((item: any) => `${item.senderCityName}`) ?? [] }}
-            series={query.data.map((item: any) => `${item.shipment_count}`) ?? []}
+            series={[]}
             type='polarArea'
           />
         )}
