@@ -1,13 +1,12 @@
 version: '3.8'
+
 services:
-  app:
-    build:
-      context: .
-    container_name: frontend-container
-    image: nextjs-dev
+  nextjs:
+    build: .
     ports:
-      - '80:3000'
+      - '3000:3000'
     environment:
-      NODE_ENV: development
+      - NODE_ENV=production
     volumes:
-      - /var/projects/frontend/.env:/app/.env
+      - .:/app
+    restart: always
