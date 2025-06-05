@@ -29,9 +29,9 @@ RUN npm install -g pnpm
 
 # Copy the built files from the build stage
 # COPY --from=build /app ./
-COPY --from=build --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=build --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=build --chown=nextjs:nodejs /app/public ./public
+COPY --from=build /app/.next/standalone ./
+COPY --from=build /app/.next/static ./.next/static
+COPY --from=build /app/public ./public
 # Expose port 3000
 EXPOSE 80
 
