@@ -1,35 +1,37 @@
-# Stage 1: Build
-FROM node:18-alpine AS build
+# Use the official Node.js image as the base image
+FROM node:22-alpine AS build
 
+# Set the working directory inside the container
 WORKDIR /app
-ENV CI=true
 
-# Install pnpm
+# Install pnpm globally
 RUN npm install -g pnpm
 
-# Copy all files
+# Copy the entire application to the working directory
 COPY . .
 
-# Install deps and build
+# Install dependencies
 RUN pnpm install
+
+# Build the Next.js app
 RUN pnpm run build
 
 # Stage 2: Production
-FROM node:18-alpine
+FROM node:22-alpine
 
+# Set the working directory
 WORKDIR /app
 
-# Install pnpm
+# Install pnpm globally
 RUN npm install -g pnpm
 
-# Copy only necessary files from build
+# Copy the built files from the build stage
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
 COPY --from=build /app/public ./public
-COPY --from=build /app/package.json ./package.json
 
-# Expose the port that the app runs on
-EXPOSE 3000
+# Expose port 80
+EXPOSE 80
 
-# Run the Next.js app
+# Start the Next.js app
 CMD ["node", "server.js"]
