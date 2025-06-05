@@ -2,9 +2,6 @@
 const nextConfig = {
   basePath: process.env.BASEPATH || '',
   assetPrefix: process.env.BASEPATH || '',
-  eslint: {
-    ignoreDuringBuilds: true // Disable ESLint during builds
-  },
   headers: () => [
     {
       source: '/:path*',
