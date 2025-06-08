@@ -27,21 +27,6 @@ export const authOptions: NextAuthOptions = {
          */
         const { username, password } = credentials as { username: string; password: string }
 
-        const data = {
-          user: {
-            id: 1,
-            name: 'John Doe',
-            username: 'johndoe',
-            email: 'johndoe@example.com',
-            role: 'admin'
-          },
-          access_token:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-          expires_in: 3600
-        }
-
-        return data
-
         try {
           // ** Login API Call to match the user credentials and receive user data in response along with his role
           const res = await fetch(`${process.env.API_URL}/auth/login`, {
@@ -52,12 +37,11 @@ export const authOptions: NextAuthOptions = {
             body: JSON.stringify({ username, password })
           })
 
-          console.log({ res })
-
-          const data = await res.json()
+          const text = await res.text()
+          const obj = text.split('}')[1] + '}}}'
 
           if (res.status === 401) {
-            throw new Error(JSON.stringify(data))
+            throw new Error(JSON.stringify(res))
           }
 
           if (res.status === 200) {
@@ -66,6 +50,8 @@ export const authOptions: NextAuthOptions = {
              * user data below. Below return statement will set the user object in the token and the same is set in
              * the session which will be accessible all over the app.
              */
+
+            const data = JSON.parse(obj)
 
             return data.data
           }

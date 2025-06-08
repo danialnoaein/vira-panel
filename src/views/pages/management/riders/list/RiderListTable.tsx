@@ -29,6 +29,12 @@ import type { ColumnDef, FilterFn } from '@tanstack/react-table'
 import type { RankingInfo } from '@tanstack/match-sorter-utils'
 
 // Type Imports
+import { useQuery } from '@tanstack/react-query'
+
+import axios from 'axios'
+
+import { Tooltip } from '@mui/material'
+
 import type { EmployeesType } from '@/types/employeeTypes'
 
 // Component Imports
@@ -66,11 +72,21 @@ const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
 // Column Definitions
 const columnHelper = createColumnHelper<EmployeesTypeWithAction>()
 
-const RiderListTable = ({ tableData }: { tableData?: EmployeesType[] }) => {
+const RiderListTable = () => {
   // States
   const [rowSelection, setRowSelection] = useState({})
-  const [data, setData] = useState(...[tableData])
   const [globalFilter, setGlobalFilter] = useState('')
+
+  const getData = async () => {
+    const fetch = await axios(`/api/users/riders`, {
+      method: 'GET'
+    })
+
+    return fetch.data.data
+  }
+
+  // Queries
+  const { data } = useQuery({ queryKey: ['EmployeeListTable'], queryFn: getData, initialData: [] })
 
   // Hooks
 
@@ -89,7 +105,7 @@ const RiderListTable = ({ tableData }: { tableData?: EmployeesType[] }) => {
           </div>
         )
       }),
-      columnHelper.accessor('fullName', {
+      columnHelper.accessor('leaveUsed', {
         header: 'روز مرخصی',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
@@ -101,7 +117,7 @@ const RiderListTable = ({ tableData }: { tableData?: EmployeesType[] }) => {
           </div>
         )
       }),
-      columnHelper.accessor('fullName', {
+      columnHelper.accessor('leaveRemaining', {
         header: 'مانده مرخصی',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
@@ -113,7 +129,7 @@ const RiderListTable = ({ tableData }: { tableData?: EmployeesType[] }) => {
           </div>
         )
       }),
-      columnHelper.accessor('fullName', {
+      columnHelper.accessor('performance', {
         header: 'عملکرد در سامانه',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
@@ -125,7 +141,7 @@ const RiderListTable = ({ tableData }: { tableData?: EmployeesType[] }) => {
           </div>
         )
       }),
-      columnHelper.accessor('fullName', {
+      columnHelper.accessor('salary', {
         header: 'حقوق ماه قبل',
         cell: ({ row }) => (
           <div className='flex items-center gap-4'>
@@ -141,9 +157,11 @@ const RiderListTable = ({ tableData }: { tableData?: EmployeesType[] }) => {
         header: 'عملیات',
         cell: ({ row }) => (
           <div className='flex items-center'>
-            <IconButton onClick={() => setData(data?.filter(product => product.id !== row.original.id))}>
-              <i className='tabler-trash text-textSecondary' />
-            </IconButton>
+            <Tooltip title={'ثبت مرخصی'}>
+              <IconButton onClick={() => console.log(row)}>
+                <i className='tabler-checklist text-textSecondary' />
+              </IconButton>
+            </Tooltip>
           </div>
         ),
         enableSorting: false

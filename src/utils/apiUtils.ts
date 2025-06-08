@@ -26,8 +26,6 @@ export const APICall = async <T = any>(url: string, options: ApiCallOptions = {}
       responseType: 'json' // Ensure JSON response type
     })
 
-    console.log('Response Data:', response.data) // Log raw response data
-
     return response.data
   } catch (error: any) {
     console.error('Error in makeApiCall:', error.message)

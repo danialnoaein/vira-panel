@@ -12,9 +12,7 @@ import { styled, useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import InputAdornment from '@mui/material/InputAdornment'
-import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
-import Alert from '@mui/material/Alert'
 
 // Third-party Imports
 import { signIn } from 'next-auth/react'
@@ -25,10 +23,9 @@ import type { SubmitHandler } from 'react-hook-form'
 import type { InferInput } from 'valibot'
 import classnames from 'classnames'
 
-// Type Imports
-import type { SystemMode } from '@core/types'
-
 // Component Imports
+import LoadingButton from '@mui/lab/LoadingButton'
+
 import Logo from '@components/layout/shared/Logo'
 import CustomTextField from '@core/components/mui/TextField'
 
@@ -71,10 +68,11 @@ const schema = object({
   password: pipe(string(), nonEmpty('فیلد ضروری'), minLength(5, 'پسورد باید حداقل ۵ کاراکتر باشد'))
 })
 
-const Login = ({ mode }: { mode: SystemMode }) => {
+const Login = () => {
   // States
   const [isPasswordShown, setIsPasswordShown] = useState(false)
   const [errorState, setErrorState] = useState<ErrorType | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   // Vars
   const darkImg = '/images/pages/auth-mask-dark.png'
@@ -90,7 +88,7 @@ const Login = ({ mode }: { mode: SystemMode }) => {
   const { settings } = useSettings()
   const theme = useTheme()
   const hidden = useMediaQuery(theme.breakpoints.down('md'))
-  const authBackground = useImageVariant(mode, lightImg, darkImg)
+  const authBackground = useImageVariant('light', lightImg, darkImg)
 
   const {
     control,
@@ -99,13 +97,13 @@ const Login = ({ mode }: { mode: SystemMode }) => {
   } = useForm<FormData>({
     resolver: valibotResolver(schema),
     defaultValues: {
-      username: '09123456789',
-      password: 'admin'
+      username: '',
+      password: ''
     }
   })
 
   const characterIllustration = useImageVariant(
-    mode,
+    'light',
     lightIllustration,
     darkIllustration,
     borderedLightIllustration,
@@ -115,6 +113,8 @@ const Login = ({ mode }: { mode: SystemMode }) => {
   const handleClickShowPassword = () => setIsPasswordShown(show => !show)
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    setIsLoading(true)
+
     const res = await signIn('credentials', {
       username: data.username,
       password: data.password,
@@ -122,12 +122,16 @@ const Login = ({ mode }: { mode: SystemMode }) => {
     })
 
     if (res && res.ok && res.error === null) {
+      setIsLoading(false)
+
       // Vars
       const redirectURL = searchParams.get('redirectTo') ?? '/'
 
       router.replace(redirectURL)
     } else {
       if (res?.error) {
+        setIsLoading(false)
+
         const error = JSON.parse(res.error)
 
         setErrorState(error)
@@ -156,11 +160,9 @@ const Login = ({ mode }: { mode: SystemMode }) => {
           <div className='flex flex-col gap-1'>
             <Typography variant='h4'>{`خوش آمدید`}</Typography>
           </div>
-          <Alert icon={false} className='bg-[var(--mui-palette-primary-lightOpacity)]'>
-            <Typography variant='body2' color='primary'>
-              نام کاربری و پسورد خود را از پشتیبانی دریافت کنید
-            </Typography>
-          </Alert>
+          <Typography variant='body2' color='primary'>
+            نام کاربری و پسورد خود را از پشتیبانی دریافت کنید
+          </Typography>
           <form
             noValidate
             autoComplete='off'
@@ -220,9 +222,9 @@ const Login = ({ mode }: { mode: SystemMode }) => {
                 />
               )}
             />
-            <Button fullWidth variant='contained' type='submit'>
+            <LoadingButton loading={isLoading} fullWidth variant='contained' type='submit'>
               ورود
-            </Button>
+            </LoadingButton>
 
             <Divider className='gap-2'>یا</Divider>
             <Typography className='text-center'>با پشتیبانی تماس بگیرید</Typography>
