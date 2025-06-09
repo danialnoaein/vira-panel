@@ -14,7 +14,7 @@ COPY . .
 RUN pnpm install
 
 # Build the Next.js app
-RUN pnpm run build
+# RUN pnpm run build
 
 # Stage 2: Production
 FROM node:22-alpine
@@ -26,11 +26,12 @@ WORKDIR /app
 RUN npm install -g pnpm
 
 # Copy the built files from the build stage
-COPY --from=build /app/.next/standalone ./
-COPY --from=build /app/public ./public
+# COPY --from=build /app/.next/standalone ./
+# COPY --from=build /app/public ./public
+RUN pnpm dev
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 3000
 
 # Start the Next.js app
-CMD ["node", "server.js"]
+# CMD ["node", "server.js"]
