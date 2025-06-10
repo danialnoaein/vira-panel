@@ -10,4 +10,4 @@ services:
     environment:
       NODE_ENV: development
     volumes:
-      - /var/projects/frontend/.env:/app/.env
+      - /home/vira-dashboard-frontend/.env:/app/.env
