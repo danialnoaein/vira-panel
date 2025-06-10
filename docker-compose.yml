@@ -9,5 +9,6 @@ services:
       - '3000:3000'
     environment:
       NODE_ENV: development
+      NEXT_TELEMETRY_DISABLED: 1
     volumes:
       - /home/vira-dashboard-frontend/.env:/app/.env
